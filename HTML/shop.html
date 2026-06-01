@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop premium raw, organic, forest, and comb honey from Hali Pali Agro Products. Farm fresh natural honey from Haryana, India.">
+  <title>Shop Honey | Hali Pali Agro Products</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="../CSS/shop.css">
+</head>
+<body>
+  <div class="toast" role="status" aria-live="polite">Product Added To Cart</div>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar" aria-label="Primary navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">HP</span>
+        <span>Hali Pali Agro Products</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-panel" id="navPanel">
+        <a href="index.html#home">Home</a>
+        <a class="active" href="shop.html" aria-current="page">Shop</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#benefits">Benefits</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions" aria-label="Shop actions">
+        <a href="#shopSearch" aria-label="Search products">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+        </a>
+        <button type="button" aria-label="Cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.7 8.3a2 2 0 0 1-2 1.7H9a2 2 0 0 1-2-1.6L5 3H2m7 18h.01M18 21h.01"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shop-hero">
+      <div class="honeycomb honeycomb-one"></div>
+      <div class="honeycomb honeycomb-two"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">Pure Natural Honey Collection</p>
+        <h1>Explore Our Honey Range</h1>
+        <p>Discover farm-fresh, naturally harvested honey crafted with purity and care.</p>
+        <a class="btn btn-primary" href="#products">Browse Products</a>
+      </div>
+    </section>
+
+    <section class="shop-controls section reveal" aria-label="Product search and filters">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+        <label class="sr-only" for="shopSearch">Search honey products</label>
+        <input id="shopSearch" type="search" placeholder="Search honey products..." autocomplete="off">
+      </div>
+
+      <div class="filter-row" aria-label="Category filters">
+        <button class="filter-btn active" type="button" data-category="All">All</button>
+        <button class="filter-btn" type="button" data-category="Raw Honey">Raw Honey</button>
+        <button class="filter-btn" type="button" data-category="Organic Honey">Organic Honey</button>
+        <button class="filter-btn" type="button" data-category="Forest Honey">Forest Honey</button>
+        <button class="filter-btn" type="button" data-category="Comb Honey">Comb Honey</button>
+        <button class="clear-filter" type="button">Clear Filters</button>
+      </div>
+    </section>
+
+    <section class="products section" id="products">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Premium Honey Shop</p>
+        <h2>Shop Our Honey</h2>
+        <p>Carefully harvested and packed to preserve natural taste and nutrition.</p>
+      </div>
+
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-illustration" aria-hidden="true">HP</div>
+        <h3>No Honey Products Found</h3>
+        <p>Try another search or clear filters.</p>
+        <button class="btn btn-primary" type="button" id="showAllProducts">Show All Products</button>
+      </div>
+    </section>
+
+    <section class="newsletter section reveal">
+      <p class="eyebrow">Stay Close</p>
+      <h2>Join Our Honey Lovers Community</h2>
+      <p>Get updates on new honey collections, offers, and farm stories.</p>
+      <form class="newsletter-form" novalidate>
+        <label class="sr-only" for="newsletterEmail">Email Address</label>
+        <input id="newsletterEmail" type="email" placeholder="Email Address" autocomplete="email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="form-message" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand" href="index.html"><span class="brand-mark">HP</span><span>Hali Pali Agro Products</span></a>
+      <p>Pure natural honey and farm fresh goodness from Haryana, India.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html#home">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="mailto:info@halipaliagro.com">info@halipaliagro.com</a>
+      <a href="tel:+910000000000">+91 XXXXX XXXXX</a>
+      <p>Sandwa, Bhiwani, Haryana, India</p>
+    </div>
+    <div>
+      <h3>Social</h3>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="Facebook">Facebook</a>
+      <a href="#" aria-label="YouTube">YouTube</a>
+    </div>
+    <p class="copyright">
+      &copy; 2026 Hali Pali Agro Products. All Rights Reserved.
+      Website made by <a href="https://kodedevelopers.org" target="_blank" rel="noopener noreferrer">Kode Developers</a>
+    </p>
+  </footer>
+
+  <script src="../JS/shop.js"></script>
+</body>
+</html>
