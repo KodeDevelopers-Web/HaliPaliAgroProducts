@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View premium honey product details from Hali Pali Agro Products. Natural, farm fresh honey packed with purity and care.">
+  <meta property="og:title" content="Honey Product | Hali Pali Agro Products">
+  <meta property="og:description" content="Premium natural honey from Hali Pali Agro Products.">
+  <meta property="og:type" content="product">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Honey Product | Hali Pali Agro Products</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="product.css">
+  <script id="productSchema" type="application/ld+json">{}</script>
+</head>
+<body>
+  <div class="toast" role="status" aria-live="polite">Product Added To Cart</div>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar" aria-label="Primary navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">HP</span>
+        <span>Hali Pali Agro Products</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-panel" id="navPanel">
+        <a href="index.html#home">Home</a>
+        <a class="active" href="shop.html">Shop</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#benefits">Benefits</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions" aria-label="Product actions">
+        <a href="shop.html#shopSearch" aria-label="Search products">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+        </a>
+        <a class="cart-button" href="cart.html" aria-label="Cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.7 8.3a2 2 0 0 1-2 1.7H9a2 2 0 0 1-2-1.6L5 3H2m7 18h.01M18 21h.01"/></svg>
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="productMain">
+    <nav class="breadcrumb section compact reveal" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="shop.html">Shop</a>
+      <span aria-hidden="true">/</span>
+      <span id="breadcrumbProduct">Product</span>
+    </nav>
+
+    <section class="product-hero section reveal" id="productView">
+      <div class="gallery" aria-label="Product image gallery">
+        <div class="main-image">
+          <img id="mainProductImage" src="" alt="">
+        </div>
+        <div class="thumbnail-row" id="thumbnailRow"></div>
+      </div>
+
+      <div class="product-summary">
+        <span class="category-badge" id="productCategory"></span>
+        <h1 id="productName"></h1>
+        <div class="rating-row">
+          <span class="stars" id="productRating"></span>
+          <a href="#reviews" id="productReviews"></a>
+        </div>
+        <p class="price" id="productPrice"></p>
+        <p class="selected-weight">Selected Weight: <strong id="selectedWeight"></strong></p>
+        <div class="variant-options" id="variantOptions" aria-label="Choose honey weight"></div>
+        <p class="summary-copy" id="productDescription"></p>
+
+        <div class="trust-grid" id="trustBadges"></div>
+
+        <div class="purchase-row" aria-label="Choose quantity">
+          <div class="quantity">
+            <button type="button" data-quantity="decrease" aria-label="Decrease quantity">-</button>
+            <span id="quantityValue">1</span>
+            <button type="button" data-quantity="increase" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn btn-primary" type="button" id="addToCart">Add To Cart</button>
+          <button class="btn btn-secondary" type="button" id="buyNow">Buy Now</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="not-found section reveal" id="notFound" hidden>
+      <div class="empty-illustration" aria-hidden="true">HP</div>
+      <p class="eyebrow">Product Not Found</p>
+      <h1>We Could Not Find This Honey Product</h1>
+      <p>The product link may be outdated, or the item may no longer be available in the catalog.</p>
+      <a class="btn btn-primary" href="shop.html">Return To Shop</a>
+    </section>
+
+    <section class="benefits section" id="productBenefits">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Pure Goodness</p>
+        <h2>Benefits In Every Spoon</h2>
+      </div>
+      <div class="benefit-grid">
+        <article class="benefit-card reveal"><span>01</span><h3>Natural Energy Booster</h3><p>A clean sweetness for morning routines, drinks, and snacks.</p></article>
+        <article class="benefit-card reveal"><span>02</span><h3>Rich In Antioxidants</h3><p>Natural honey compounds support a wholesome daily lifestyle.</p></article>
+        <article class="benefit-card reveal"><span>03</span><h3>Supports Wellness</h3><p>A trusted pantry essential for balanced, natural living.</p></article>
+        <article class="benefit-card reveal"><span>04</span><h3>Delicious Taste</h3><p>Golden flavor that pairs beautifully with food and beverages.</p></article>
+        <article class="benefit-card reveal"><span>05</span><h3>Farm Fresh Quality</h3><p>Handled with care from sourcing to secure packaging.</p></article>
+        <article class="benefit-card reveal"><span>06</span><h3>No Artificial Additives</h3><p>Simple, natural honey without unnecessary extras.</p></article>
+      </div>
+    </section>
+
+    <section class="details section reveal" id="detailsSection">
+      <div class="tab-list" role="tablist" aria-label="Product information">
+        <button class="tab-button active" type="button" role="tab" aria-selected="true" data-tab="description">Description</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="benefits">Benefits</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="shipping">Shipping</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="faq">FAQ</button>
+      </div>
+      <div class="tab-panel" id="tabPanel"></div>
+    </section>
+
+    <section class="reviews section" id="reviews">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Customer Reviews</p>
+        <h2>What Customers Say</h2>
+        <p><strong>4.9 / 5</strong> based on <span id="reviewTotal">24</span> reviews</p>
+      </div>
+      <div class="review-grid">
+        <article class="review-card reveal"><div class="avatar">A</div><h3>Anika Sharma</h3><div class="stars">*****</div><p>Fresh taste, smooth texture, and beautifully packed. It has become part of our breakfast table.</p></article>
+        <article class="review-card reveal"><div class="avatar">R</div><h3>Rohit Malik</h3><div class="stars">*****</div><p>The honey feels pure and rich. Delivery was neat and the jar arrived safely.</p></article>
+        <article class="review-card reveal"><div class="avatar">M</div><h3>Meera Singh</h3><div class="stars">*****</div><p>Lovely natural sweetness for tea and desserts. I liked the clean farm fresh flavor.</p></article>
+      </div>
+    </section>
+
+    <section class="related section" id="relatedSection">
+      <div class="section-heading reveal">
+        <p class="eyebrow">More To Explore</p>
+        <h2>You May Also Like</h2>
+      </div>
+      <div class="related-grid" id="relatedProducts"></div>
+    </section>
+
+    <section class="newsletter section reveal">
+      <p class="eyebrow">Stay Close</p>
+      <h2>Join Our Honey Lovers Community</h2>
+      <p>Get updates on new honey collections, offers, and farm stories.</p>
+      <form class="newsletter-form" novalidate>
+        <label class="sr-only" for="newsletterEmail">Email Address</label>
+        <input id="newsletterEmail" type="email" placeholder="Email Address" autocomplete="email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="form-message" role="status"></p>
+    </section>
+  </main>
+
+  <div class="mobile-purchase-bar" id="mobilePurchaseBar">
+    <strong id="mobilePrice">Rs. 0</strong>
+    <button type="button" id="mobileAddToCart">Add To Cart</button>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand" href="index.html"><span class="brand-mark">HP</span><span>Hali Pali Agro Products</span></a>
+      <p>Pure natural honey and farm fresh goodness from Haryana, India.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html#home">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="mailto:orkisan.98@gmail.com">orkian.98@gmail.com</a>
+      <a href="tel:+919499222242">+91 9499222242</a>
+      <p>Sandwa, Bhiwani, Haryana, India</p>
+    </div>
+    <div>
+      <h3>Social</h3>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="Facebook">Facebook</a>
+    </div>
+    <p class="copyright">
+      &copy; 2026 Hali Pali Agro Products. All Rights Reserved.
+      Website made by <a href="https://kodedevelopers.org" target="_blank" rel="noopener noreferrer">Kode Developers</a>
+    </p>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>
