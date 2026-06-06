@@ -1,16 +1,24 @@
+const body = document.body;
 const header = document.querySelector("#siteHeader");
 const menuToggle = document.querySelector(".menu-toggle");
 const navPanel = document.querySelector("#navPanel");
-const cartContainer = document.querySelector("#cartContainer");
 const cartItems = document.querySelector("#cartItems");
 const emptyState = document.querySelector("#emptyState");
 const summaryItems = document.querySelector("#summaryItems");
 const summarySubtotal = document.querySelector("#summarySubtotal");
 const summaryTotal = document.querySelector("#summaryTotal");
-const cartSubtitle = document.querySelector("#cartSubtitle");
 const checkoutBtn = document.querySelector("#checkoutBtn");
+const loader = document.querySelector(".loader");
+const backToTop = document.querySelector(".back-to-top");
 
 let cart = [];
+
+body.classList.add("loading");
+
+window.addEventListener("load", () => {
+  loader.classList.add("hidden");
+  body.classList.remove("loading");
+});
 
 const loadCart = () => {
   const stored = localStorage.getItem("haliPaliCart");
@@ -28,7 +36,6 @@ const formatPrice = (price) => {
 const calculateTotals = () => {
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
   return { itemCount, subtotal };
 };
 
@@ -38,23 +45,24 @@ const updateUI = () => {
   summaryItems.textContent = String(itemCount);
   summarySubtotal.textContent = formatPrice(subtotal);
   summaryTotal.textContent = formatPrice(subtotal);
-  cartSubtitle.textContent = `${itemCount} item${itemCount !== 1 ? "s" : ""}`;
 };
 
 const renderCart = () => {
   if (cart.length === 0) {
-    cartContainer.hidden = true;
+    cartItems.hidden = true;
+    document.querySelector(".cart-summary-section").hidden = true;
     emptyState.hidden = false;
     return;
   }
 
-  cartContainer.hidden = false;
+  cartItems.hidden = false;
+  document.querySelector(".cart-summary-section").hidden = false;
   emptyState.hidden = true;
 
   cartItems.innerHTML = cart.map((item, index) => `
     <div class="cart-item" data-index="${index}">
       <div class="cart-item-image">
-        <img src="${item.image || ""}" alt="${item.productName || ""}" loading="lazy">
+        <img src="${item.image || ""}" alt="${item.productName || "Product"}" loading="lazy">
       </div>
 
       <div class="cart-item-details">
@@ -63,7 +71,7 @@ const renderCart = () => {
           <span class="cart-item-category">${item.type || "Honey"}</span>
           <span>${item.variantSize || ""}</span>
         </div>
-        <div class="cart-item-price">${formatPrice(item.price * item.quantity)}</div>
+        <div class="cart-item-total">${formatPrice(item.price * item.quantity)}</div>
       </div>
 
       <div class="cart-item-actions">
@@ -115,79 +123,37 @@ const attachEventListeners = () => {
   });
 };
 
-const setupHeader = () => {
-  const updateChrome = () => {
-    header.classList.toggle("scrolled", window.scrollY > 42);
-  };
-
-  window.addEventListener("scroll", updateChrome, { passive: true });
-  updateChrome();
-
-  menuToggle.addEventListener("click", () => {
-    const isOpen = navPanel.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  document.querySelectorAll(".nav-panel a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navPanel.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-    });
-  });
+const updateChrome = () => {
+  const scrollTop = window.scrollY;
+  header.classList.toggle("scrolled", scrollTop > 42);
+  backToTop.classList.toggle("visible", scrollTop > 520);
 };
 
-const setupFooter = () => {
-  const footer = document.querySelector(".site-footer");
-  footer.innerHTML = `
-    <div>
-      <a class="brand" href="index.html"><span class="brand-mark">HP</span><span>Hali Pali Agro Products</span></a>
-      <p>Pure natural honey and farm fresh goodness from Haryana, India.</p>
-    </div>
-    <div>
-      <h3>Quick Links</h3>
-      <a href="index.html#home">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="index.html#products">Products</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-    <div>
-      <h3>Social</h3>
-      <a href="#" aria-label="Instagram">Instagram</a>
-      <a href="#" aria-label="Facebook">Facebook</a>
-    </div>
-    <p class="copyright">
-      &copy; 2026 Hali Pali Agro Products. All Rights Reserved.
-      Website made by <a href="https://kodedevelopers.org" target="_blank" rel="noopener noreferrer">Kode Developers</a>
-    </p>
-  `;
-};
+window.addEventListener("scroll", updateChrome, { passive: true });
+updateChrome();
 
-const setupCheckout = () => {
-  checkoutBtn.addEventListener("click", () => {
-    if (cart.length > 0) {
-      alert("Checkout coming soon");
-    }
-  });
-};
-
-const setupBackToTop = () => {
-  const backToTop = document.querySelector(".back-to-top");
-
-  window.addEventListener("scroll", () => {
-    backToTop.classList.toggle("visible", window.scrollY > 520);
-  });
-
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  loadCart();
-  renderCart();
-  setupHeader();
-  setupFooter();
-  setupCheckout();
-  setupBackToTop();
+menuToggle.addEventListener("click", () => {
+  const isOpen = navPanel.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
 });
+
+document.querySelectorAll(".nav-panel a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navPanel.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+checkoutBtn.addEventListener("click", () => {
+  if (cart.length > 0) {
+    alert("Checkout coming soon");
+  }
+});
+
+loadCart();
+renderCart();
+
