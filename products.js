@@ -22,17 +22,17 @@ const products = window.products = [
     variants: [
       {
         size: "400g",
-        price: 0,
+        price: 240,
         image: "/ASSETS/Mustard400G.webp"
       },
       {
         size: "600g",
-        price: 0,
+        price: 350,
         image: "/ASSETS/Mustard600G.webp",
       },
       {
         size: "1kg",
-        price: 0,
+        price: 580,
         image: "/ASSETS/Mustard1KG.webp",
       },
     ],
@@ -60,12 +60,12 @@ const products = window.products = [
     variants: [
       {
         size: "600g",
-        price: 0,
+        price: 170,
         image: "/ASSETS/Wildflower600G.webp",
       },
       {
         size: "1kg",
-        price: 0,
+        price: 289,
         image: "/ASSETS/Wildflower1KG.webp",
       },
     ],
@@ -93,17 +93,17 @@ const products = window.products = [
     variants: [
       {
         size: "400g",
-        price: 0,
+        price: 220,
         image: "/ASSETS/Jandi400G.webp",
       },
       {
         size: "600g",
-        price: 0,
+        price: 320,
         image: "/ASSETS/Jandi600G.webp",
       },
       {
         size: "1kg",
-        price: 0,
+        price: 500,
         image: "/ASSETS/Jandi1KG.webp",
       },
     ],
@@ -131,17 +131,17 @@ const products = window.products = [
     variants: [
       {
         size: "400g",
-        price: 0,
+        price: 220,
         image: "/ASSETS/Sheesham400G.webp",
       },
       {
         size: "600g",
-        price: 0,
+        price: 320,
         image: "/ASSETS/Sheesham600G.webp",
       },
       {
         size: "1kg",
-        price: 0,
+        price: 500,
         image: "/ASSETS/Sheesham1KG.webp",
       },
     ],
