@@ -30,7 +30,7 @@ const saveCart = () => {
 };
 
 const formatPrice = (price) => {
-  return `Rs. ${Number(price || 0).toLocaleString("en-IN")}`;
+  return `Rs. ${Number(price ||0.).toLocaleString("en-IN")}`;
 };
 
 const calculateTotals = () => {
@@ -49,6 +49,7 @@ const updateUI = () => {
 
 const renderCart = () => {
   if (cart.length === 0) {
+    cartItems.innerHTML = "";
     cartItems.hidden = true;
     document.querySelector(".cart-summary-section").hidden = true;
     emptyState.hidden = false;
@@ -95,7 +96,10 @@ const attachEventListeners = () => {
     btn.addEventListener("click", () => {
       const index = Number(btn.dataset.index);
       if (cart[index]) {
-        cart[index].quantity = Math.max(1, cart[index].quantity - 1);
+        cart[index].quantity -= 1;
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
         saveCart();
         renderCart();
       }

@@ -246,15 +246,21 @@ const updateQuantity = (nextQuantity) => {
 
 const saveCartItem = () => {
   const cart = JSON.parse(localStorage.getItem("haliPaliCart") || "[]");
-  cart.push({
-    productId: product.id,
-    productName: product.name,
-    type: product.type,
-    variantSize: selectedVariant.size,
-    price: selectedVariant.price,
-    image: selectedVariant.image,
-    quantity,
-  });
+  const existingItem = cart.find((item) => item.productId === product.id && item.variantSize === selectedVariant.size);
+  
+  if (existingItem) {
+    existingItem.quantity += quantity;
+  } else {
+    cart.push({
+      productId: product.id,
+      productName: product.name,
+      type: product.type,
+      variantSize: selectedVariant.size,
+      price: selectedVariant.price,
+      image: selectedVariant.image,
+      quantity,
+    });
+  }
   localStorage.setItem("haliPaliCart", JSON.stringify(cart));
 };
 

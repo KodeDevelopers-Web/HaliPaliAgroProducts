@@ -22,6 +22,10 @@ body {
   font-size: 1rem;
 }
 
+.section.compact {
+  padding: 32px 0;
+}
+
 .cart-layout {
   display: grid;
   grid-template-columns: 1fr 380px;
@@ -267,7 +271,7 @@ body {
 }
 
 .empty-cart-state .btn {
-  display: inline-block;
+  display: inline-flex;
   margin-top: 20px;
 }
 
