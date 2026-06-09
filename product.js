@@ -21,13 +21,22 @@ const cartCount = document.querySelector(".cart-count");
 const newsletterForm = document.querySelector(".newsletter-form");
 
 let quantity = 1;
-let cartItems = 0;
 let toastTimer;
 let activeTab = "description";
 let selectedVariant = product ? productCatalog.primaryVariant(product) : null;
 
 const setText = (selector, text) => {
   document.querySelector(selector).textContent = text;
+};
+
+const getCartTotalQuantity = () => {
+  const cart = JSON.parse(localStorage.getItem("haliPaliCart") || "[]");
+  return cart.reduce((total, item) => total + (Number(item.quantity) || 0), 0);
+};
+
+const updateCartCount = () => {
+  if (!cartCount) return;
+  cartCount.textContent = String(getCartTotalQuantity());
 };
 
 const showToast = (message = "Product Added To Cart") => {
@@ -267,8 +276,7 @@ const saveCartItem = () => {
 const addProductToCart = (button = addToCart) => {
   setLoading(button, "Adding...", () => {
     saveCartItem();
-    cartItems += quantity;
-    cartCount.textContent = String(cartItems);
+    updateCartCount();
     showToast(`${product.name} ${selectedVariant.size} Added To Cart`);
   });
 };
@@ -316,6 +324,7 @@ if (!product) {
 
 window.addEventListener("scroll", updateNavbar, { passive: true });
 updateNavbar();
+updateCartCount();
 
 menuToggle.addEventListener("click", () => {
   const isOpen = navPanel.classList.toggle("open");
@@ -350,7 +359,7 @@ addToCart.addEventListener("click", () => addProductToCart(addToCart));
 mobileAddToCart.addEventListener("click", () => addProductToCart(mobileAddToCart));
 buyNow.addEventListener("click", () => {
   setLoading(buyNow, "Processing...", () => {
-    showToast("Checkout page coming soon.");
+    window.location.href = "checkout.html";
   });
 });
 
