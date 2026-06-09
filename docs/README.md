@@ -81,43 +81,6 @@ This website is designed to:
 
 ---
 
-## 📂 Project Structure
-
-```text
-hali-pali-agro-products/
-│
-├── index.html
-├── shop.html
-├── product.html
-├── cart.html
-├── checkout.html
-│
-├── css/
-│   ├── style.css
-│   ├── shop.css
-│   ├── product.css
-│   ├── cart.css
-│   └── checkout.css
-│
-├── js/
-│   ├── script.js
-│   ├── shop.js
-│   ├── product.js
-│   ├── cart.js
-│   └── checkout.js
-│
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   └── logos/
-│
-├── README.md
-│
-└── LICENSE
-```
-
----
-
 ## 📱 Responsive Design
 
 Optimized for:
