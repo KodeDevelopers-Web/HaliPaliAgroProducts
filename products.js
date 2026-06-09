@@ -23,17 +23,17 @@ const products = window.products = [
       {
         size: "400g",
         price: 240,
-        image: "docs/ASSETS/Mustard400G.webp"
+        image: "./docs/ASSETS/Mustard400G.webp"
       },
       {
         size: "600g",
         price: 350,
-        image: "docs/ASSETS/Mustard600G.webp",
+        image: "./docs/ASSETS/Mustard600G.webp",
       },
       {
         size: "1kg",
         price: 580,
-        image: "docs/ASSETS/Mustard1KG.webp",
+        image: "./docs/ASSETS/Mustard1KG.webp",
       },
     ],
   },
@@ -61,12 +61,12 @@ const products = window.products = [
       {
         size: "600g",
         price: 170,
-        image: "docs/ASSETS/Wildflower600G.webp",
+        image: "./docs/ASSETS/Wildflower600G.webp",
       },
       {
         size: "1kg",
         price: 289,
-        image: "docs/ASSETS/Wildflower1KG.webp",
+        image: "./docs/ASSETS/Wildflower1KG.webp",
       },
     ],
   },
@@ -94,17 +94,17 @@ const products = window.products = [
       {
         size: "400g",
         price: 220,
-        image: "docs/ASSETS/Jandi400G.webp",
+        image: "./docs/ASSETS/Jandi400G.webp",
       },
       {
         size: "600g",
         price: 320,
-        image: "docs/ASSETS/Jandi600G.webp",
+        image: "./docs/ASSETS/Jandi600G.webp",
       },
       {
         size: "1kg",
         price: 500,
-        image: "docs/ASSETS/Jandi1KG.webp",
+        image: "./docs/ASSETS/Jandi1KG.webp",
       },
     ],
   },
@@ -132,17 +132,17 @@ const products = window.products = [
       {
         size: "400g",
         price: 220,
-        image: "docs/ASSETS/Sheesham400G.webp",
+        image: "./docs/ASSETS/Sheesham400G.webp",
       },
       {
         size: "600g",
         price: 320,
-        image: "docs/ASSETS/Sheesham600G.webp",
+        image: "./docs/ASSETS/Sheesham600G.webp",
       },
       {
         size: "1kg",
         price: 500,
-        image: "docs/ASSETS/Sheesham1KG.webp",
+        image: "./docs/ASSETS/Sheesham1KG.webp",
       },
     ],
   },
