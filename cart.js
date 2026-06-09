@@ -52,12 +52,14 @@ const renderCart = () => {
     cartItems.innerHTML = "";
     cartItems.hidden = true;
     document.querySelector(".cart-summary-section").hidden = true;
+    document.querySelector(".cart-layout").hidden = true;
     emptyState.hidden = false;
     return;
   }
 
   cartItems.hidden = false;
   document.querySelector(".cart-summary-section").hidden = false;
+  document.querySelector(".cart-layout").hidden = false;
   emptyState.hidden = true;
 
   cartItems.innerHTML = cart.map((item, index) => `
