@@ -154,7 +154,7 @@ backToTop.addEventListener("click", () => {
 
 checkoutBtn.addEventListener("click", () => {
   if (cart.length > 0) {
-    alert("Checkout coming soon");
+    window.location.href = "checkout.html";
   }
 });
 

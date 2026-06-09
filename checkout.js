@@ -1,0 +1,244 @@
+const body = document.body;
+const header = document.querySelector("#siteHeader");
+const menuToggle = document.querySelector(".menu-toggle");
+const navPanel = document.querySelector("#navPanel");
+const deliveryForm = document.querySelector("#deliveryForm");
+const checkoutContent = document.querySelector("#checkoutContent");
+const emptyCheckoutState = document.querySelector("#emptyCheckoutState");
+const orderItems = document.querySelector("#orderItems");
+const summaryItems = document.querySelector("#summaryItems");
+const summarySubtotal = document.querySelector("#summarySubtotal");
+const summaryTotal = document.querySelector("#summaryTotal");
+const loader = document.querySelector(".loader");
+const backToTop = document.querySelector(".back-to-top");
+
+let cart = [];
+
+body.classList.add("loading");
+
+window.addEventListener("load", () => {
+  loader.classList.add("hidden");
+  body.classList.remove("loading");
+});
+
+const loadCart = () => {
+  const stored = localStorage.getItem("haliPaliCart");
+  cart = stored ? JSON.parse(stored) : [];
+};
+
+const formatPrice = (price) => {
+  return `Rs. ${Number(price || 0).toLocaleString("en-IN")}`;
+};
+
+const calculateTotals = () => {
+  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  return { itemCount, subtotal };
+};
+
+const updateUI = () => {
+  const { itemCount, subtotal } = calculateTotals();
+
+  summaryItems.textContent = String(itemCount);
+  summarySubtotal.textContent = formatPrice(subtotal);
+  summaryTotal.textContent = formatPrice(subtotal);
+};
+
+const renderOrderSummary = () => {
+  if (cart.length === 0) {
+    orderItems.innerHTML = "";
+    checkoutContent.hidden = true;
+    emptyCheckoutState.hidden = false;
+    return;
+  }
+
+  checkoutContent.hidden = false;
+  emptyCheckoutState.hidden = true;
+
+  orderItems.innerHTML = cart.map((item) => `
+    <div class="order-item">
+      <div class="order-item-image">
+        <img src="${item.image || ""}" alt="${item.productName || "Product"}" loading="lazy">
+      </div>
+      <div class="order-item-details">
+        <div class="order-item-name">${item.productName || "Product"}</div>
+        <div class="order-item-meta">Qty: ${item.quantity}</div>
+      </div>
+      <div class="order-item-price">${formatPrice(item.price * item.quantity)}</div>
+    </div>
+  `).join("");
+
+  updateUI();
+};
+
+const validateField = (fieldName, value) => {
+  value = value.trim();
+
+  switch (fieldName) {
+    case "fullName":
+      if (!value) return "Please enter your full name";
+      if (value.length < 3) return "Name must be at least 3 characters";
+      return "";
+
+    case "phoneNumber":
+      const phoneRegex = /^\d{10}$/;
+      if (!value) return "Please enter your phone number";
+      if (!phoneRegex.test(value.replace(/\D/g, ""))) {
+        return "Please enter a valid 10 digit mobile number";
+      }
+      return "";
+
+    case "email":
+      if (value === "") return "";
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) return "Please enter a valid email address";
+      return "";
+
+    case "addressLine1":
+      if (!value) return "Please enter your address";
+      if (value.length < 5) return "Please enter a complete address";
+      return "";
+
+    case "addressLine2":
+      return "";
+
+    case "city":
+      if (!value) return "Please enter your city";
+      if (value.length < 2) return "Please enter a valid city name";
+      return "";
+
+    case "state":
+      if (!value) return "Please enter your state";
+      if (value.length < 2) return "Please enter a valid state name";
+      return "";
+
+    case "pincode":
+      const pincodeRegex = /^\d{6}$/;
+      if (!value) return "Please enter your pincode";
+      if (!pincodeRegex.test(value)) return "Please enter a valid 6 digit pincode";
+      return "";
+
+    default:
+      return "";
+  }
+};
+
+const showFieldError = (fieldName, errorMessage) => {
+  const input = document.querySelector(`#${fieldName}`);
+  const errorSpan = input.parentElement.querySelector(".error-message");
+
+  if (errorMessage) {
+    input.classList.add("error");
+    errorSpan.textContent = errorMessage;
+  } else {
+    input.classList.remove("error");
+    errorSpan.textContent = "";
+  }
+};
+
+const validateForm = () => {
+  const fields = ["fullName", "phoneNumber", "email", "addressLine1", "addressLine2", "city", "state", "pincode"];
+  let isValid = true;
+
+  fields.forEach((fieldName) => {
+    const input = document.querySelector(`#${fieldName}`);
+    const value = input.value;
+    const error = validateField(fieldName, value);
+
+    showFieldError(fieldName, error);
+    if (error) isValid = false;
+  });
+
+  return isValid;
+};
+
+const generateOrderId = () => {
+  const year = new Date().getFullYear();
+  const randomNum = String(Math.floor(Math.random() * 9000) + 1000);
+  return `HP-${year}-${randomNum}`;
+};
+
+const placeOrder = (event) => {
+  event.preventDefault();
+
+  if (!validateForm()) {
+    return;
+  }
+
+  if (cart.length === 0) {
+    alert("Your cart is empty. Please add items before placing an order.");
+    return;
+  }
+
+  const formData = new FormData(deliveryForm);
+  const customer = {
+    fullName: formData.get("fullName").trim(),
+    phoneNumber: formData.get("phoneNumber").trim(),
+    email: formData.get("email").trim(),
+    addressLine1: formData.get("addressLine1").trim(),
+    addressLine2: formData.get("addressLine2").trim(),
+    city: formData.get("city").trim(),
+    state: formData.get("state").trim(),
+    pincode: formData.get("pincode").trim(),
+  };
+
+  const { itemCount, subtotal } = calculateTotals();
+
+  const orderData = {
+    orderId: generateOrderId(),
+    customer: customer,
+    items: JSON.parse(JSON.stringify(cart)),
+    totalItems: itemCount,
+    subtotal: subtotal,
+    total: subtotal,
+    createdAt: new Date().toISOString(),
+  };
+
+  try {
+    localStorage.setItem("lastOrder", JSON.stringify(orderData));
+    localStorage.removeItem("haliPaliCart");
+    window.location.href = "order-success.html";
+  } catch (error) {
+    console.error("Error placing order:", error);
+    alert("An error occurred while placing your order. Please try again.");
+  }
+};
+
+const updateChrome = () => {
+  const scrollTop = window.scrollY;
+  header.classList.toggle("scrolled", scrollTop > 42);
+  backToTop.classList.toggle("visible", scrollTop > 520);
+};
+
+window.addEventListener("scroll", updateChrome, { passive: true });
+updateChrome();
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = navPanel.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+document.querySelectorAll(".nav-panel a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navPanel.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+deliveryForm.addEventListener("submit", placeOrder);
+
+document.querySelectorAll(".form-group input").forEach((input) => {
+  input.addEventListener("blur", () => {
+    const fieldName = input.id;
+    const value = input.value;
+    const error = validateField(fieldName, value);
+    showFieldError(fieldName, error);
+  });
+});
+
+loadCart();
+renderOrderSummary();
