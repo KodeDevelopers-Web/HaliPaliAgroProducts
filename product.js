@@ -359,7 +359,23 @@ addToCart.addEventListener("click", () => addProductToCart(addToCart));
 mobileAddToCart.addEventListener("click", () => addProductToCart(mobileAddToCart));
 buyNow.addEventListener("click", () => {
   setLoading(buyNow, "Processing...", () => {
-    window.location.href = "checkout.html";
+
+    const buyNowItem = [{
+      productId: product.id,
+      productName: product.name,
+      type: product.type,
+      variantSize: selectedVariant.size,
+      price: selectedVariant.price,
+      image: selectedVariant.image,
+      quantity
+    }];
+
+    localStorage.setItem(
+      "haliPaliBuyNow",
+      JSON.stringify(buyNowItem)
+    );
+
+    window.location.href = "checkout.html?mode=buy-now";
   });
 });
 

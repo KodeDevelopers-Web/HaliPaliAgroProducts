@@ -22,8 +22,16 @@ window.addEventListener("load", () => {
 });
 
 const loadCart = () => {
-  const stored = localStorage.getItem("haliPaliCart");
-  cart = stored ? JSON.parse(stored) : [];
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
+
+  if (mode === "buy-now") {
+    const stored = localStorage.getItem("haliPaliBuyNow");
+    cart = stored ? JSON.parse(stored) : [];
+  } else {
+    const stored = localStorage.getItem("haliPaliCart");
+    cart = stored ? JSON.parse(stored) : [];
+  }
 };
 
 const formatPrice = (price) => {
@@ -197,6 +205,7 @@ const placeOrder = (event) => {
   try {
     localStorage.setItem("lastOrder", JSON.stringify(orderData));
     localStorage.removeItem("haliPaliCart");
+    localStorage.removeItem("haliPaliBuyNow");
     window.location.href = "order-success.html";
   } catch (error) {
     console.error("Error placing order:", error);
