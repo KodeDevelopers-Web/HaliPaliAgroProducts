@@ -308,6 +308,7 @@ h3 {
 }
 
 .btn-primary,
+.add-cart-btn
 .product-meta button,
 .newsletter-form button,
 .contact-form button {
@@ -316,6 +317,7 @@ h3 {
   box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
 }
 
+.buy-now-btn,
 .btn-secondary {
   color: var(--white);
   border: 1px solid rgba(255, 255, 255, 0.5);
