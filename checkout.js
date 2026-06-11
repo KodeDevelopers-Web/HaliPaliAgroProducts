@@ -22,16 +22,15 @@ window.addEventListener("load", () => {
 });
 
 const loadCart = () => {
-  const params = new URLSearchParams(window.location.search);
-  const mode = params.get("mode");
+  const buyNow = localStorage.getItem("haliPaliBuyNow");
 
-  if (mode === "buy-now") {
-    const stored = localStorage.getItem("haliPaliBuyNow");
-    cart = stored ? JSON.parse(stored) : [];
-  } else {
-    const stored = localStorage.getItem("haliPaliCart");
-    cart = stored ? JSON.parse(stored) : [];
+  if (buyNow) {
+    cart = JSON.parse(buyNow);
+    return;
   }
+
+  const stored = localStorage.getItem("haliPaliCart");
+  cart = stored ? JSON.parse(stored) : [];
 };
 
 const formatPrice = (price) => {

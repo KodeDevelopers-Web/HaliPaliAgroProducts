@@ -170,15 +170,76 @@ contactForm.addEventListener("submit", (event) => {
   contactForm.reset();
 });
 
-document.querySelectorAll(".product-card button").forEach((button) => {
+const saveHomeProductToCart = (card) => {
+  const cart = JSON.parse(localStorage.getItem("haliPaliCart") || "[]");
+
+  const productId = card.dataset.id;
+  const size = card.dataset.size;
+  const price = Number(card.dataset.price);
+  const image = card.dataset.image;
+
+  const existingItem = cart.find(
+    item =>
+      item.productId === productId &&
+      item.variantSize === size
+  );
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      productId,
+      productName: `Sheesham Honey ${size}`,
+      type: "Honey",
+      variantSize: size,
+      price,
+      image,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem("haliPaliCart", JSON.stringify(cart));
+};
+
+document.querySelectorAll(".add-cart-btn").forEach((button) => {
   button.addEventListener("click", () => {
+
+    const card = button.closest(".product-card");
+
+    saveHomeProductToCart(card);
+
     const originalText = button.textContent;
-    button.textContent = "Added";
+
+    button.textContent = "Added ✓";
     button.disabled = true;
 
-    window.setTimeout(() => {
+    setTimeout(() => {
       button.textContent = originalText;
       button.disabled = false;
     }, 1200);
+  });
+});
+
+document.querySelectorAll(".buy-now-btn").forEach((button) => {
+  button.addEventListener("click", () => {
+
+    const card = button.closest(".product-card");
+
+    const buyNowItem = [{
+      productId: card.dataset.id,
+      productName: `Sheesham Honey ${card.dataset.size}`,
+      type: "Honey",
+      variantSize: card.dataset.size,
+      price: Number(card.dataset.price),
+      image: card.dataset.image,
+      quantity: 1
+    }];
+
+    localStorage.setItem(
+      "haliPaliBuyNow",
+      JSON.stringify(buyNowItem)
+    );
+
+    window.location.href = "checkout.html";
   });
 });
