@@ -308,7 +308,6 @@ h3 {
 }
 
 .btn-primary,
-.add-cart-btn,
 .product-meta button,
 .newsletter-form button,
 .contact-form button {
@@ -317,7 +316,26 @@ h3 {
   box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
 }
 
-.buy-now-btn,
+.add-cart-btn {
+  padding-right: 18px;
+  border: 0;
+  background: linear-gradient(135deg, var(--gold), #ffdb73);
+  box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
+  font-weight: 800;
+  min-height: 48px;
+  align-items: center;
+  display: inline-flex;
+  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
+}
+
+.buy-now-btn {
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(14px);
+  
+}
+
 .btn-secondary {
   color: var(--white);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -328,6 +346,7 @@ h3 {
 .btn:hover,
 .product-meta button:hover,
 .newsletter-form button:hover,
+.add-cart-btn:hover,
 .contact-form button:hover {
   transform: translateY(-3px);
 }
