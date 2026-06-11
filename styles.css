@@ -325,15 +325,21 @@ h3 {
   min-height: 48px;
   align-items: center;
   display: inline-flex;
+  border-radius: 999px;
   transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
 }
 
 .buy-now-btn {
-  color: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding-right: 18px;
+  border: 1px var(--green);
   background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(14px);
-  
+  box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
+  font-weight: 800;
+  min-height: 48px;
+  align-items: center;
+  display: inline-flex;
+  border-radius: 999px;
+  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
 }
 
 .btn-secondary {
