@@ -217,7 +217,7 @@ const placeOrder = async (event) => {
   console.log(orderData);
 
   await fetch(
-      "https://script.google.com/macros/s/AKfycbwmgbDhQ-iM0h2MWwzAOxk3oXX9MhLf8_o1iwEdtsJsBvXNBV5CA61repipMdYpkESPOw/exec",
+      "https://script.google.com/macros/s/AKfycbw00RMyWh3jIx51oineFp032yJQhMaOCaptkOre626pbxbFQIkzSlPpr214olQPjkvXQA/exec",
         {
         method: "POST",
         mode: "no-cors",
@@ -242,9 +242,7 @@ const placeOrder = async (event) => {
           state: customer.state,
           pincode: customer.pincode,
 
-          items: orderData.items
-            .map(item => `${item.productName} x${item.quantity}`)
-            .join(", "),
+          items: orderData.items,
 
           totalItems: orderData.totalItems,
           totalAmount: orderData.total,
