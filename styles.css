@@ -317,7 +317,7 @@ h3 {
 }
 
 .add-cart-btn {
-  padding-right: 18px;
+  padding: 18px;
   border: 0;
   background: linear-gradient(135deg, var(--gold), #ffdb73);
   box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
@@ -330,7 +330,7 @@ h3 {
 }
 
 .buy-now-btn {
-  padding-right: 18px;
+  padding: 18px;
   border: 1px var(--green);
   background: rgba(255, 255, 255, 0.13);
   box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
