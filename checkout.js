@@ -172,9 +172,6 @@ const placeOrder = async (event) => {
   'button[type="submit"]'
   );
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Placing Order...";
-
   event.preventDefault();
 
   if (!validateForm()) {
@@ -185,6 +182,9 @@ const placeOrder = async (event) => {
     alert("Your cart is empty. Please add items before placing an order.");
     return;
   }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Placing Order...";
 
   const formData = new FormData(deliveryForm);
 
