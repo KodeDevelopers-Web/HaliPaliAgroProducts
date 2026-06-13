@@ -203,12 +203,13 @@ const placeOrder = async (event) => {
   };
 
   try {
-    const response = await fetch(
+  await fetch(
       "https://script.google.com/macros/s/AKfycbwmgbDhQ-iM0h2MWwzAOxk3oXX9MhLf8_o1iwEdtsJsBvXNBV5CA61repipMdYpkESPOw/exec",
-      {
+        {
         method: "POST",
+        mode: "no-cors",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "text/plain"
         },
         body: JSON.stringify({
           orderId: orderData.orderId,
@@ -237,12 +238,6 @@ const placeOrder = async (event) => {
         }),
       }
     );
-
-    const result = await response.json();
-
-    if (!result.success) {
-      throw new Error("Failed to save order");
-    }
 
     localStorage.setItem(
       "lastOrder",
