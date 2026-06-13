@@ -284,12 +284,27 @@ h3 {
 }
 
 .hero-buttons,
-.product-meta,
 .promo {
   display: flex;
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
+}
+
+.product-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.product-actions button {
+  flex: 1;
 }
 
 .btn,
@@ -341,6 +356,12 @@ h3 {
   justify-content: center;
   border-radius: 999px;
   transition: all 300ms ease;
+}
+
+.add-cart-btn,
+.buy-now-btn {
+  min-height: 44px;
+  padding: 0 16px;
 }
 
 .btn-secondary {
