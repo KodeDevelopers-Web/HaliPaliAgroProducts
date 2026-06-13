@@ -165,7 +165,7 @@ const generateOrderId = () => {
   return `HP-${year}-${randomNum}`;
 };
 
-const placeOrder = (event) => {
+const placeOrder = async (event) => {
   event.preventDefault();
 
   if (!validateForm()) {
@@ -178,6 +178,7 @@ const placeOrder = (event) => {
   }
 
   const formData = new FormData(deliveryForm);
+
   const customer = {
     fullName: formData.get("fullName").trim(),
     phoneNumber: formData.get("phoneNumber").trim(),
@@ -202,13 +203,62 @@ const placeOrder = (event) => {
   };
 
   try {
-    localStorage.setItem("lastOrder", JSON.stringify(orderData));
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbwmgbDhQ-iM0h2MWwzAOxk3oXX9MhLf8_o1iwEdtsJsBvXNBV5CA61repipMdYpkESPOw/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderId: orderData.orderId,
+          date: new Date().toLocaleString(),
+
+          customerName: customer.fullName,
+          phone: customer.phoneNumber,
+          email: customer.email,
+
+          address:
+            customer.addressLine1 +
+            (customer.addressLine2
+              ? ", " + customer.addressLine2
+              : ""),
+
+          city: customer.city,
+          state: customer.state,
+          pincode: customer.pincode,
+
+          items: orderData.items
+            .map(item => `${item.productName} x${item.quantity}`)
+            .join(", "),
+
+          totalItems: orderData.totalItems,
+          totalAmount: orderData.total,
+        }),
+      }
+    );
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error("Failed to save order");
+    }
+
+    localStorage.setItem(
+      "lastOrder",
+      JSON.stringify(orderData)
+    );
+
     localStorage.removeItem("haliPaliCart");
     localStorage.removeItem("haliPaliBuyNow");
+
     window.location.href = "order-success.html";
+
   } catch (error) {
-    console.error("Error placing order:", error);
-    alert("An error occurred while placing your order. Please try again.");
+    console.error("Order Error:", error);
+    alert(
+      "Order could not be placed. Please try again."
+    );
   }
 };
 
