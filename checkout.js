@@ -22,15 +22,16 @@ window.addEventListener("load", () => {
 });
 
 const loadCart = () => {
-  const buyNow = localStorage.getItem("haliPaliBuyNow");
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
 
-  if (buyNow) {
-    cart = JSON.parse(buyNow);
-    return;
+  if (mode === "buy-now") {
+    const buyNow = localStorage.getItem("haliPaliBuyNow");
+    cart = buyNow ? JSON.parse(buyNow) : [];
+  } else {
+    const stored = localStorage.getItem("haliPaliCart");
+    cart = stored ? JSON.parse(stored) : [];
   }
-
-  const stored = localStorage.getItem("haliPaliCart");
-  cart = stored ? JSON.parse(stored) : [];
 };
 
 const formatPrice = (price) => {
@@ -166,6 +167,14 @@ const generateOrderId = () => {
 };
 
 const placeOrder = async (event) => {
+
+  const submitBtn = deliveryForm.querySelector(
+  'button[type="submit"]'
+  );
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Placing Order...";
+
   event.preventDefault();
 
   if (!validateForm()) {
@@ -203,6 +212,10 @@ const placeOrder = async (event) => {
   };
 
   try {
+
+  console.log("ORDER SENT", orderData.orderId);
+  console.log(orderData);
+
   await fetch(
       "https://script.google.com/macros/s/AKfycbwmgbDhQ-iM0h2MWwzAOxk3oXX9MhLf8_o1iwEdtsJsBvXNBV5CA61repipMdYpkESPOw/exec",
         {
@@ -250,6 +263,8 @@ const placeOrder = async (event) => {
     window.location.href = "order-success.html";
 
   } catch (error) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Place Order";
     console.error("Order Error:", error);
     alert(
       "Order could not be placed. Please try again."
