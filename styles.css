@@ -317,29 +317,30 @@ h3 {
 }
 
 .add-cart-btn {
-  padding: 5px;
+  padding: 10px 18px;
   border: 0;
   background: linear-gradient(135deg, var(--gold), #ffdb73);
-  box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
+  color: #111;
   font-weight: 800;
-  align-items: center;
   display: inline-flex;
+  align-items: center;
   justify-content: center;
   border-radius: 999px;
-  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  box-shadow: 0 10px 25px rgba(244, 180, 0, 0.25);
+  transition: all 300ms ease;
 }
 
 .buy-now-btn {
-  padding: 5px;
-  border: 1px var(--green);
-  background: rgba(255, 255, 255, 0.13);
-  box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
+  padding: 10px 18px;
+  border: 2px solid var(--green);
+  background: white;
+  color: var(--green);
   font-weight: 800;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  display: inline-flex;
   border-radius: 999px;
-  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  transition: all 300ms ease;
 }
 
 .btn-secondary {
@@ -347,6 +348,11 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.13);
   backdrop-filter: blur(14px);
+}
+
+.buy-now-btn:hover {
+  background: var(--green);
+  color: white;
 }
 
 .btn:hover,
