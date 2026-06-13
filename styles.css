@@ -317,22 +317,21 @@ h3 {
 }
 
 .add-cart-btn {
-  padding: 18px;
+  padding: 14px;
   border: 0;
   background: linear-gradient(135deg, var(--gold), #ffdb73);
   box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
   font-weight: 800;
   min-height: 48px;
   align-items: center;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   border-radius: 999px;
   transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
-  margin-top: 34px;
 }
 
 .buy-now-btn {
-  padding: 18px;
+  padding: 14px;
   border: 1px var(--green);
   background: rgba(255, 255, 255, 0.13);
   box-shadow: 0 16px 34px rgba(244, 180, 0, 0.3);
@@ -340,10 +339,9 @@ h3 {
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  display: flex;
+  display: inline-flex;
   border-radius: 999px;
   transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
-  margin-top: 34px;
 }
 
 .btn-secondary {
