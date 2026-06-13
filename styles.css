@@ -324,9 +324,11 @@ h3 {
   font-weight: 800;
   min-height: 48px;
   align-items: center;
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   border-radius: 999px;
   transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  margin-top: 34px;
 }
 
 .buy-now-btn {
@@ -337,9 +339,11 @@ h3 {
   font-weight: 800;
   min-height: 48px;
   align-items: center;
-  display: inline-flex;
+  justify-content: center;
+  display: flex;
   border-radius: 999px;
   transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
+  margin-top: 34px;
 }
 
 .btn-secondary {
