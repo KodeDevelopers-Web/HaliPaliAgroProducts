@@ -215,7 +215,7 @@ const placeOrder = async (event) => {
 
   console.log("ORDER SENT", orderData.orderId);
   console.log(orderData);
-
+  //fetching google script to save order data in google sheet
   await fetch(
       "https://script.google.com/macros/s/AKfycbzibJJ8Soq4UETMuncxGEnN9Fv_CDModA80_KjGe-MVpGbIa3MYTA1eiciYKJlNXs5ZYA/exec",
         {
