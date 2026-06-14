@@ -217,7 +217,7 @@ const placeOrder = async (event) => {
   console.log(orderData);
 
   await fetch(
-      "https://script.google.com/macros/s/AKfycbydtgsZNsOYyWi5kqvZusCjDHlAlVap5YAH2tbwEysPBRTR8wRn_NN8n46A__87IUCj1g/exec",
+      "https://script.google.com/macros/s/AKfycbyozCpIpzn8plutP5E7KLuV15Np6EvPx2Ej3KDYP8N1ZsD_i3HYi56usLU_zc4jD8F12g/exec",
         {
         method: "POST",
         mode: "no-cors",
