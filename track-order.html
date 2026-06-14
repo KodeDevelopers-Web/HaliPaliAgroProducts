@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order - Hali Pali Agro Products</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="track-order.css">
+</head>
+<body>
+  <div class="loader">
+    <div class="loader-drop"></div>
+  </div>
+
+  <div class="scroll-progress"></div>
+
+  <header id="siteHeader" class="site-header">
+    <div class="header-content">
+      <div class="logo-container">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">🍯</span>
+          <span class="logo-text">Hali Pali</span>
+        </a>
+      </div>
+      <nav class="nav-menu">
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span class="menu-icon"></span>
+        </button>
+        <ul id="navPanel" class="nav-panel">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="track-order.html" class="active">Track Order</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="track-order-main">
+    <section class="section">
+      <div class="container">
+        <div class="track-order-header">
+          <h1>Track Your Order</h1>
+          <p>Enter your Order ID and Phone Number to check your order status.</p>
+        </div>
+
+        <div class="track-order-container">
+          <form id="trackOrderForm" class="tracking-form">
+            <div class="form-group">
+              <label for="orderId">Order ID</label>
+              <input
+                type="text"
+                id="orderId"
+                name="orderId"
+                placeholder="e.g., HP-2026-1234"
+                required
+                autocomplete="off"
+              >
+              <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="e.g., 9499222242"
+                required
+                autocomplete="off"
+              >
+              <span class="error-message"></span>
+            </div>
+
+            <button type="submit" class="track-btn">Track Order</button>
+          </form>
+
+          <!-- Result Card - Hidden by default -->
+          <div id="resultCard" class="result-card hidden">
+            <!-- Success State -->
+            <div id="successState" class="success-state hidden">
+              <div class="result-header">
+                <div class="checkmark-icon">✓</div>
+                <h2>Order Found</h2>
+              </div>
+
+              <div class="order-details">
+                <div class="detail-item">
+                  <span class="detail-label">Order ID</span>
+                  <span id="resultOrderId" class="detail-value"></span>
+                </div>
+
+                <div class="detail-item">
+                  <span class="detail-label">Customer Name</span>
+                  <span id="resultCustomerName" class="detail-value"></span>
+                </div>
+
+                <div class="detail-item">
+                  <span class="detail-label">Status</span>
+                  <div class="status-badge" id="resultStatus"></div>
+                </div>
+
+                <div class="detail-item">
+                  <span class="detail-label">Total Amount</span>
+                  <span id="resultTotalCost" class="detail-value amount"></span>
+                </div>
+              </div>
+
+              <div class="status-timeline">
+                <div class="timeline-step">
+                  <div class="timeline-dot pending"></div>
+                  <span class="timeline-label">Pending</span>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-dot processing"></div>
+                  <span class="timeline-label">Processing</span>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-dot packed"></div>
+                  <span class="timeline-label">Packed</span>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-dot shipped"></div>
+                  <span class="timeline-label">Shipped</span>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-dot delivered"></div>
+                  <span class="timeline-label">Delivered</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state hidden">
+              <div class="result-header error">
+                <div class="error-icon">✕</div>
+                <h2>Order Not Found</h2>
+              </div>
+              <p class="error-message-text">
+                We couldn't find an order matching the Order ID and Phone Number you provided. Please check your details and try again.
+              </p>
+              <button type="button" class="back-btn" onclick="document.getElementById('trackOrderForm').reset(); document.getElementById('resultCard').classList.add('hidden');">
+                Search Again
+              </button>
+            </div>
+
+            <!-- Network Error State -->
+            <div id="networkErrorState" class="error-state hidden">
+              <div class="result-header error">
+                <div class="error-icon">⚠</div>
+                <h2>Connection Error</h2>
+              </div>
+              <p class="error-message-text">
+                We encountered a problem connecting to our server. Please check your internet connection and try again.
+              </p>
+              <button type="button" class="back-btn" onclick="document.getElementById('trackOrderForm').reset(); document.getElementById('resultCard').classList.add('hidden');">
+                Try Again
+              </button>
+            </div>
+          </div>
+
+          <!-- Validation Error Message -->
+          <div id="validationError" class="validation-error hidden">
+            <span id="validationErrorText"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Hali Pali Agro Products. All rights reserved.</p>
+      <p>Premium Quality Honey & Agro Products</p>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
+
+  <script src="script.js"></script>
+  <script src="track-order.js"></script>
+</body>
+</html>
