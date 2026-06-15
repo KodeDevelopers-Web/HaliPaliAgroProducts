@@ -1050,4 +1050,10 @@ h3 {
   .copyright {
     grid-column: auto;
   }
+
+  .copyright a {
+  display: inline;
+  color: #ffe199;
+  font-weight: 850;
+  }
 }
