@@ -23,7 +23,7 @@
 
 .eyebrow {
   margin: 0 0 10px;
-  color: var(--dark-gold);
+  color: #D68910;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -33,7 +33,7 @@
 .track-order-header h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   overflow-wrap: anywhere;
   color: var(--text);
@@ -41,12 +41,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.track-order-header p {
-  margin: 0;
-  font-size: 1.05rem;
-  color: var(--muted);
 }
 
 .track-order-container {
