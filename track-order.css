@@ -21,10 +21,19 @@
   margin-bottom: 48px;
 }
 
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--dark-gold);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
 .track-order-header h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: 2.5rem;
   font-weight: 700;
   overflow-wrap: anywhere;
   color: var(--text);
