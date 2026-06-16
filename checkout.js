@@ -1,3 +1,4 @@
+//checkout.js
 const body = document.body;
 const header = document.querySelector("#siteHeader");
 const menuToggle = document.querySelector(".menu-toggle");
