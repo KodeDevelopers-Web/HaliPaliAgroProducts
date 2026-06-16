@@ -1,4 +1,4 @@
-// Track Order Page Script
+//track-order.js
 
 const body = document.body;
 const header = document.querySelector("#siteHeader");
@@ -114,31 +114,34 @@ const hideAllStates = () => {
 const showSuccessState = (orderData) => {
   hideAllStates();
 
-  document.querySelector("#resultOrderId").textContent = orderData.orderId;
+  document.querySelector("#resultOrderId").textContent =
+    orderData.orderId;
+
   document.querySelector("#resultCustomerName").textContent =
     orderData.customerName;
 
-  // Set status badge
   const statusBadge = document.querySelector("#resultStatus");
   const statusLower = orderData.status.toLowerCase();
+
   statusBadge.textContent = orderData.status;
   statusBadge.className = `status-badge ${statusLower}`;
 
-  // Format and display total cost
-  const totalCostElement = document.querySelector("#resultTotalCost");
-  totalCostElement.textContent = `Rs. ${Number(orderData.totalCost || 0).toLocaleString(
-    "en-IN"
-  )}`;
+  const totalCostElement =
+    document.querySelector("#resultTotalCost");
 
-  // Update timeline
+  totalCostElement.textContent =
+    `Rs. ${Number(orderData.totalCost || 0).toLocaleString("en-IN")}`;
+
   updateTimeline(statusLower);
 
   resultCard.classList.remove("hidden");
   successState.classList.remove("hidden");
 
-  // Scroll to result
   setTimeout(() => {
-    resultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    resultCard.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
   }, 100);
 };
 
@@ -179,22 +182,21 @@ const updateTimeline = (status) => {
 
 // Fetch order data from Apps Script
 const fetchOrderData = async (orderId, phoneNumber) => {
+
   const params = new URLSearchParams({
-    orderId: orderId,
-    phone: phoneNumber,
+    orderId,
+    phone: phoneNumber
   });
 
-  const url = `${SCRIPT_URL}?${params.toString()}`;
+  const response = await fetch(
+    `${SCRIPT_URL}?${params.toString()}`
+  );
 
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.error("Fetch error:", error);
-    throw error;
+  if (!response.ok) {
+    throw new Error("Network Error");
   }
+
+  return await response.json();
 };
 
 // Handle form submission
@@ -227,14 +229,21 @@ const handleFormSubmit = async (event) => {
     const orderData = await fetchOrderData(orderId, phoneNumber);
 
     if (orderData.found) {
-      // Show success state
-      showSuccessState(orderData);
-      // Clear form
-      trackOrderForm.reset();
-    } else {
-      // Show error state - order not found
-      showErrorState();
-    }
+
+  showSuccessState({
+    orderId: orderData.orderId,
+    customerName: orderData.customerName,
+    status: orderData.status,
+    totalCost: orderData.totalCost
+  });
+
+  trackOrderForm.reset();
+
+} else {
+
+  showErrorState();
+
+}
   } catch (error) {
     console.error("Error tracking order:", error);
     // Show network error state

@@ -1,4 +1,4 @@
-/* Track Order Page Specific Styles */
+/* track-order.css */
 
 .track-order-main {
   flex: 1;
@@ -33,14 +33,20 @@
 .track-order-header h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 700;
-  overflow-wrap: anywhere;
   color: var(--text);
-  background: var(--text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  line-height: 1.3;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.track-subtitle {
+  max-width: 650px;
+  margin: 16px auto 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .track-order-container {
