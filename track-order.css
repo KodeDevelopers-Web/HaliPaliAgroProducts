@@ -22,11 +22,13 @@
 }
 
 .track-order-header h1 {
-  margin: 0 0 16px;
-  font-size: 2.5rem;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
+  overflow-wrap: anywhere;
   color: var(--text);
-  background: linear-gradient(135deg, var(--gold) 0%, var(--green) 100%);
+  background: var(--text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
