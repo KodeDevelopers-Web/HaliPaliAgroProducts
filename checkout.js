@@ -162,9 +162,7 @@ const validateForm = () => {
 };
 
 const generateOrderId = () => {
-  const year = new Date().getFullYear();
-  const randomNum = String(Math.floor(Math.random() * 9000) + 1000);
-  return `HP-${year}-${randomNum}`;
+  return `HP-${Date.now()}`;
 };
 
 const placeOrder = async (event) => {
@@ -212,22 +210,34 @@ const placeOrder = async (event) => {
     createdAt: new Date().toISOString(),
   };
 
+  const itemsText = orderData.items
+    .map(item => `${item.productName} (${item.quantity})`)
+    .join(", ");
+
+  const sizeText = orderData.items
+    .map(item => item.variantSize || "")
+    .join(", ");
+
+  const itemPriceText = orderData.items
+    .map(item => item.price || 0)
+    .join(", ");
+
   try {
 
   console.log("ORDER SENT", orderData.orderId);
   console.log(orderData);
   //fetching google script to save order data in google sheet
   await fetch(
-      "https://script.google.com/macros/s/AKfycbzibJJ8Soq4UETMuncxGEnN9Fv_CDModA80_KjGe-MVpGbIa3MYTA1eiciYKJlNXs5ZYA/exec",
+      "https://script.google.com/macros/s/AKfycbwEX_XvxNDAnJ3-Vw1tawMavQX9qAiDSA9K2GPAGoCtWz4mvgzmZ4X3MpLONz5EyH4WgA/exec",
         {
         method: "POST",
-        mode: "no-cors",
+        mode: "cors",
         headers: {
           "Content-Type": "text/plain"
         },
         body: JSON.stringify({
           orderId: orderData.orderId,
-          date: new Date().toLocaleString(),
+          date: new Date().toISOString(),
 
           customerName: customer.fullName,
           phone: customer.phoneNumber,
@@ -243,10 +253,14 @@ const placeOrder = async (event) => {
           state: customer.state,
           pincode: customer.pincode,
 
-          items: orderData.items,
+          items: itemsText,
+          size: sizeText,
+          itemPrice: itemPriceText,
 
           totalItems: orderData.totalItems,
-          totalAmount: orderData.total,
+          totalCost: orderData.total,
+
+          orderStatus: "Pending"
         }),
       }
     );
