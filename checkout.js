@@ -208,7 +208,7 @@ const placeOrder = async (event) => {
     subtotal: subtotal,
     total: subtotal,
     createdAt: new Date().toISOString(),
-    orderStatus: "Pending"
+    orderStatus: "Pending",
   };
 
   const itemsText = orderData.items
