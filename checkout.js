@@ -231,7 +231,7 @@ const placeOrder = async (event) => {
       "https://script.google.com/macros/s/AKfycbwEX_XvxNDAnJ3-Vw1tawMavQX9qAiDSA9K2GPAGoCtWz4mvgzmZ4X3MpLONz5EyH4WgA/exec",
         {
         method: "POST",
-        mode: "cors",
+        mode: "no-cors",
         headers: {
           "Content-Type": "text/plain"
         },
