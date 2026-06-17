@@ -162,7 +162,9 @@ const validateForm = () => {
 };
 
 const generateOrderId = () => {
-  return `HP-${Date.now()}`;
+  const year = new Date().getFullYear();
+  const random = Math.floor(1000 + Math.random() * 9000);
+  return `HP-${year}-${random}`;
 };
 
 const placeOrder = async (event) => {
@@ -228,10 +230,10 @@ const placeOrder = async (event) => {
   console.log(orderData);
   //fetching google script to save order data in google sheet
   await fetch(
-      "https://script.google.com/macros/s/AKfycbwEX_XvxNDAnJ3-Vw1tawMavQX9qAiDSA9K2GPAGoCtWz4mvgzmZ4X3MpLONz5EyH4WgA/exec",
+      "https://script.google.com/macros/s/AKfycbzAfM7vG9m4MEeLQmi9zAVwkG4G5CuP7OYzdcdmaVhESz9A9RT0v3NK9QF4ECqG6Ng7tQ/exec",
         {
         method: "POST",
-        mode: "no-cors",
+        mode: "cors",
         headers: {
           "Content-Type": "text/plain"
         },
