@@ -1,5 +1,4 @@
 //checkout.js
-alert("checkout.js loaded");
 const body = document.body;
 const header = document.querySelector("#siteHeader");
 const menuToggle = document.querySelector(".menu-toggle");
@@ -163,7 +162,6 @@ const validateForm = () => {
 };
 
 const generateOrderId = () => {
-  alert("PLACE ORDER CLICKED");
   const year = new Date().getFullYear();
   const random = Math.floor(1000 + Math.random() * 9000);
   return `HP-${year}-${random}`;
