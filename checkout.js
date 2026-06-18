@@ -229,43 +229,48 @@ const placeOrder = async (event) => {
   console.log("ORDER SENT", orderData.orderId);
   console.log(orderData);
   //fetching google script to save order data in google sheet
-  await fetch(
-      "https://script.google.com/macros/s/AKfycbwNAwk_yzBEK07O-T1XpYyDgsTf3UxZqDUIwgsYYquwxyNlZWideMmACMnpy6bevEX3vQ/exec",
-        {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "text/plain"
-        },
-        body: JSON.stringify({
-          orderId: orderData.orderId,
-          date: new Date().toISOString(),
+  const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbwNAwk_yzBEK07O-T1XpYyDgsTf3UxZqDUIwgsYYquwxyNlZWideMmACMnpy6bevEX3vQ/exec",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain"
+    },
+    body: JSON.stringify({
+      orderId: orderData.orderId,
+      date: new Date().toISOString(),
 
-          customerName: customer.fullName,
-          phone: customer.phoneNumber,
-          email: customer.email,
+      customerName: customer.fullName,
+      phone: customer.phoneNumber,
+      email: customer.email,
 
-          address:
-            customer.addressLine1 +
-            (customer.addressLine2
-              ? ", " + customer.addressLine2
-              : ""),
+      address:
+        customer.addressLine1 +
+        (customer.addressLine2
+          ? ", " + customer.addressLine2
+          : ""),
 
-          city: customer.city,
-          state: customer.state,
-          pincode: customer.pincode,
+      city: customer.city,
+      state: customer.state,
+      pincode: customer.pincode,
 
-          items: itemsText,
-          size: sizeText,
-          itemPrice: itemPriceText,
+      products: itemsText,
+      productSize: sizeText,
+      productPrice: itemPriceText,
 
-          totalItems: orderData.totalItems,
-          totalCost: orderData.total,
+      totalItems: orderData.totalItems,
+      totalCost: orderData.total,
 
-          orderStatus: "Pending"
-        }),
-      }
-    );
+      orderStatus: "Pending"
+    })
+  }
+);
+
+const result = await response.json();
+
+if (!result.success) {
+    throw new Error(result.error);
+}
 
     localStorage.setItem(
       "lastOrder",
