@@ -233,6 +233,7 @@ const placeOrder = async (event) => {
   "https://script.google.com/macros/s/AKfycbwNAwk_yzBEK07O-T1XpYyDgsTf3UxZqDUIwgsYYquwxyNlZWideMmACMnpy6bevEX3vQ/exec",
   {
     method: "POST",
+    mode: "cors",
     headers: {
       "Content-Type": "application/json"
     },
