@@ -225,53 +225,47 @@ const placeOrder = async (event) => {
     .join(", ");
 
   try {
+    console.log("ORDER SENT", orderData.orderId);
+    console.log(orderData);
+    // fetching google script to save order data in google sheet
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbzAfM7vG9m4MEeLQmi9zAVwkG4G5CuP7OYzdcdmaVhESz9A9RT0v3NK9QF4ECqG6Ng7tQ/exec",
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "text/plain"
+        },
+        body: JSON.stringify({
+          orderId: orderData.orderId,
+          date: new Date().toISOString(),
+          customerName: customer.fullName,
+          phone: customer.phoneNumber,
+          email: customer.email,
+          address:
+            customer.addressLine1 +
+            (customer.addressLine2
+              ? ", " + customer.addressLine2
+              : ""),
+          city: customer.city,
+          state: customer.state,
+          pincode: customer.pincode,
+          items: orderData.items,
+          items: itemsText,
+          size: sizeText,
+          itemPrice: itemPriceText,
+          totalItems: orderData.totalItems,
+          totalAmount: orderData.total,
+          totalCost: orderData.total,
+          orderStatus: "Pending"
+        })
+      }
+    );
 
-  console.log("ORDER SENT", orderData.orderId);
-  console.log(orderData);
-  //fetching google script to save order data in google sheet
-  const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbwNAwk_yzBEK07O-T1XpYyDgsTf3UxZqDUIwgsYYquwxyNlZWideMmACMnpy6bevEX3vQ/exec",
-  {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      orderId: orderData.orderId,
-      date: new Date().toISOString(),
-
-      customerName: customer.fullName,
-      phone: customer.phoneNumber,
-      email: customer.email,
-
-      address:
-        customer.addressLine1 +
-        (customer.addressLine2
-          ? ", " + customer.addressLine2
-          : ""),
-
-      city: customer.city,
-      state: customer.state,
-      pincode: customer.pincode,
-
-      products: itemsText,
-      productSize: sizeText,
-      productPrice: itemPriceText,
-
-      totalItems: orderData.totalItems,
-      totalCost: orderData.total,
-
-      orderStatus: "Pending"
-    })
-  }
-);
-
-const result = await response.json();
-
-if (!result.success) {
-    throw new Error(result.error);
-}
+    if (!response.ok) {
+      const result = await response.json().catch(() => null);
+      throw new Error(result?.error || "Failed to place order.");
+    }
 
     localStorage.setItem(
       "lastOrder",
@@ -282,7 +276,6 @@ if (!result.success) {
     localStorage.removeItem("haliPaliBuyNow");
 
     window.location.href = "order-success.html";
-
   } catch (error) {
     submitBtn.disabled = false;
     submitBtn.textContent = "Place Order";
