@@ -183,10 +183,11 @@ const updateTimeline = (status) => {
 
 // Fetch order data from Apps Script
 const fetchOrderData = async (orderId, phoneNumber) => {
-
   const params = new URLSearchParams({
     orderId,
-    phone: phoneNumber
+    phone: phoneNumber,
+    // Add a cache-buster parameter
+    t: Date.now() 
   });
 
   const response = await fetch(

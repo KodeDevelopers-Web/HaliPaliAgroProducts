@@ -250,7 +250,6 @@ const placeOrder = async (event) => {
           city: customer.city,
           state: customer.state,
           pincode: customer.pincode,
-          items: orderData.items,
           items: itemsText,
           size: sizeText,
           itemPrice: itemPriceText,
