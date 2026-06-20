@@ -15,7 +15,7 @@ const backToTop = document.querySelector(".back-to-top");
 
 // Google Apps Script endpoint
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxEtIGFnXKpWLUP-l12255wLQjpA2M50xqKBARm2My0TWI8ph6C08UECrWZqmq2QV65/exec";
+  "https://script.google.com/macros/s/AKfycbzvHKA_Ap4vDbPzJCuWsMzko-J9xs8gVcik4zIqloXtEsJP-fDIywCpJsLGEoxlWghvqQ/exec";
 
 // Status badge color mapping
 const statusColors = {
@@ -167,14 +167,15 @@ const showNetworkErrorState = () => {
   }, 100);
 };
 
-// Update timeline based on status
+// Update timeline based on status securely
 const updateTimeline = (status) => {
   const steps = ["pending", "processing", "packed", "shipped", "delivered"];
   const stepIndex = steps.indexOf(status);
 
   document.querySelectorAll(".timeline-dot").forEach((dot, index) => {
     dot.classList.remove("active");
-    if (index <= stepIndex) {
+    // Only light up dots if the status sequence is valid
+    if (stepIndex !== -1 && index <= stepIndex) {
       dot.classList.add("active");
     }
   });
