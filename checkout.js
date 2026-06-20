@@ -229,7 +229,7 @@ const placeOrder = async (event) => {
     console.log(orderData);
     // fetching google script to save order data in google sheet
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbzAfM7vG9m4MEeLQmi9zAVwkG4G5CuP7OYzdcdmaVhESz9A9RT0v3NK9QF4ECqG6Ng7tQ/exec",
+      "https://script.google.com/macros/s/AKfycbzvHKA_Ap4vDbPzJCuWsMzko-J9xs8gVcik4zIqloXtEsJP-fDIywCpJsLGEoxlWghvqQ/exec",
       {
         method: "POST",
         mode: "cors",

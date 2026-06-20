@@ -15,7 +15,7 @@ const backToTop = document.querySelector(".back-to-top");
 
 // Google Apps Script endpoint
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzibJJ8Soq4UETMuncxGEnN9Fv_CDModA80_KjGe-MVpGbIa3MYTA1eiciYKJlNXs5ZYA/exec";
+  "https://script.google.com/macros/s/AKfycbxEtIGFnXKpWLUP-l12255wLQjpA2M50xqKBARm2My0TWI8ph6C08UECrWZqmq2QV65/exec";
 
 // Status badge color mapping
 const statusColors = {
